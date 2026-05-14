@@ -108,46 +108,86 @@ public class UnityAdsPro extends AndroidNonvisibleComponent {
         }
     }
 
-    // ==========================================
+        // ==========================================
     // EVENTS (Blocks Kuning)
     // ==========================================
     @SimpleEvent(description = "Terpanggil saat inisialisasi sukses")
     public void InitializationSuccess() {
-        EventDispatcher.dispatchEvent(this, "InitializationSuccess");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "InitializationSuccess");
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat inisialisasi gagal")
-    public void InitializationFailed(String errorMessage) {
-        EventDispatcher.dispatchEvent(this, "InitializationFailed", errorMessage);
+    public void InitializationFailed(final String errorMessage) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "InitializationFailed", errorMessage);
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat iklan siap ditampilkan")
-    public void AdLoaded(String adUnitId) {
-        EventDispatcher.dispatchEvent(this, "AdLoaded", adUnitId);
+    public void AdLoaded(final String adUnitId) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdLoaded", adUnitId);
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat iklan gagal di-load")
-    public void AdFailedToLoad(String adUnitId, String errorMessage) {
-        EventDispatcher.dispatchEvent(this, "AdFailedToLoad", adUnitId, errorMessage);
+    public void AdFailedToLoad(final String adUnitId, final String errorMessage) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdFailedToLoad", adUnitId, errorMessage);
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat iklan gagal ditampilkan")
-    public void AdFailedToShow(String adUnitId, String errorMessage) {
-        EventDispatcher.dispatchEvent(this, "AdFailedToShow", adUnitId, errorMessage);
+    public void AdFailedToShow(final String adUnitId, final String errorMessage) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdFailedToShow", adUnitId, errorMessage);
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat iklan mulai muncul di layar")
-    public void AdStarted(String adUnitId) {
-        EventDispatcher.dispatchEvent(this, "AdStarted", adUnitId);
+    public void AdStarted(final String adUnitId) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdStarted", adUnitId);
+            }
+        });
     }
 
     @SimpleEvent(description = "Terpanggil saat user mengklik iklan")
-    public void AdClicked(String adUnitId) {
-        EventDispatcher.dispatchEvent(this, "AdClicked", adUnitId);
+    public void AdClicked(final String adUnitId) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdClicked", adUnitId);
+            }
+        });
     }
 
-    @SimpleEvent(description = "Terpanggil saat iklan selesai. isCompleted true = sukses tonton sampai habis")
-    public void AdCompleted(String adUnitId, boolean isCompleted) {
-        EventDispatcher.dispatchEvent(this, "AdCompleted", adUnitId, isCompleted);
+    @SimpleEvent(description = "Terpanggil saat iklan selesai")
+    public void AdCompleted(final String adUnitId, final boolean isCompleted) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EventDispatcher.dispatchEvent(UnityAdsPro.this, "AdCompleted", adUnitId, isCompleted);
+            }
+        });
     }
 }
